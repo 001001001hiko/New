@@ -4,7 +4,7 @@
    ========================================= */
 
 
-/* ---------- SCREEN CONTROL ---------- */
+/* ================= SCREEN CONTROL ================= */
 
 function showScreen(id) {
 
@@ -21,138 +21,334 @@ function showScreen(id) {
 }
 
 
-/* ---------- START ---------- */
+/* ================= START ================= */
 
 function enterUniverse() {
 
-    showScreen("loveScreen");
+    showScreen("question");
+
 }
 
 
-/* ---------- LOVE QUESTION ---------- */
+/* ================= LOVE QUESTION ================= */
 
-function loveAnswer() {
+function ofCourse() {
 
-    const text = document.getElementById("loveAnswerText");
+    document.getElementById("answer").innerHTML = `
+        <p class="pink">
+        Then you already know... ❤️
+        <br><br>
+        But I'll say it anyway:
+        I LOVE YOU MORE THAN WORDS CAN EXPLAIN.
+        </p>
+    `;
 
-    text.innerHTML =
-        "Then you already know... but I'll still say it. I LOVE YOU MORE THAN WORDS CAN EXPLAIN. ❤️";
-
-    document.getElementById("continue1").classList.remove("hidden");
+    document
+        .getElementById("questionContinue")
+        .classList.remove("hidden");
 }
 
 
 function tellMe() {
 
-    const text = document.getElementById("loveAnswerText");
+    document.getElementById("answer").innerHTML = `
+        <p class="pink">
+        More than yesterday...
+        <br>
+        Less than tomorrow.
+        ❤️
+        </p>
+    `;
 
-    text.innerHTML =
-        "More than yesterday... and less than tomorrow. ❤️";
-
-    document.getElementById("continue1").classList.remove("hidden");
+    document
+        .getElementById("questionContinue")
+        .classList.remove("hidden");
 }
 
 
-/* ---------- UNIVERSE ---------- */
+/* ================= UNIVERSE ================= */
 
 function showUniverse() {
 
-    showScreen("universeScreen");
+    showScreen("universe");
+
 }
 
 
-/* ---------- MEMORIES ---------- */
+/* ================= MEMORIES ================= */
 
-function showMemory(number) {
+function memory(number) {
 
-    const box = document.getElementById("memoryBox");
+    const box = document.getElementById("memory");
 
     const memories = {
 
-        1:
-            "⭐ The first time I saw you... I didn't know you would become such an important part of my life. ❤️",
+        1: `
+            <h2>⭐ The Beginning</h2>
+            <p>
+            The first time I saw you,
+            I had no idea you would become
+            such an important part of my life. ❤️
+            </p>
+        `,
 
-        2:
-            "😂 One of my favorite things about us is how even the smallest moments can become unforgettable memories.",
+        2: `
+            <h2>😂 Our Laughs</h2>
+            <p>
+            One of my favorite things about us
+            is how even the smallest moments
+            can become unforgettable memories.
+            </p>
+        `,
 
-        3:
-            "💖 Somewhere along the way, I realized that you weren't just someone I liked... you became someone I truly cared about.",
+        3: `
+            <h2>💖 The Moment</h2>
+            <p>
+            Somewhere along the way,
+            you stopped being just someone I liked...
+            and became someone I truly cared about.
+            </p>
+        `,
 
-        4:
-            "🌹 And this is only the beginning. I want this universe to be filled with hundreds of memories with you."
+        4: `
+            <h2>🌹 My Favorite</h2>
+            <p>
+            If I had to choose my favorite memory,
+            I probably couldn't.
+            Because every moment with you
+            keeps becoming my new favorite.
+            </p>
+        `,
+
+        5: `
+            <h2>🌌 The Future</h2>
+            <p>
+            This universe isn't finished.
+            I want us to fill it with hundreds
+            of new memories together. ❤️
+            </p>
+        `
     };
 
-    box.innerHTML = `<p>${memories[number]}</p>`;
+    box.innerHTML = memories[number];
+
 }
 
 
-/* ---------- LETTER ---------- */
+/* ================= COUNTDOWN ================= */
+
+function showCountdown() {
+
+    showScreen("countdown");
+
+}
+
+
+/*
+   CHANGE THIS DATE TO A SPECIAL DATE.
+
+   Example:
+   "2027-01-01T00:00:00"
+*/
+
+const specialDate =
+    new Date("2027-01-01T00:00:00").getTime();
+
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+
+    let distance = specialDate - now;
+
+    if (distance < 0) {
+
+        distance = 0;
+
+    }
+
+    const days =
+        Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    const hours =
+        Math.floor(
+            (distance % (1000 * 60 * 60 * 24))
+            / (1000 * 60 * 60)
+        );
+
+    const minutes =
+        Math.floor(
+            (distance % (1000 * 60 * 60))
+            / (1000 * 60)
+        );
+
+    const seconds =
+        Math.floor(
+            (distance % (1000 * 60))
+            / 1000
+        );
+
+
+    document.getElementById("days").innerText =
+        String(days).padStart(2, "0");
+
+    document.getElementById("hours").innerText =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").innerText =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").innerText =
+        String(seconds).padStart(2, "0");
+}
+
+
+setInterval(updateCountdown, 1000);
+
+updateCountdown();
+
+
+/* ================= LETTER ================= */
 
 function showLetter() {
 
-    showScreen("letterScreen");
+    showScreen("letter");
+
 }
 
 
 function openLetter() {
 
-    document.getElementById("envelope").classList.add("hidden");
+    document
+        .getElementById("envelope")
+        .classList.add("hidden");
 
-    document.getElementById("letter").classList.remove("hidden");
+    document
+        .getElementById("letterText")
+        .classList.remove("hidden");
+
 }
 
 
-/* ---------- FINAL QUESTION ---------- */
+/* ================= FINAL ================= */
 
 function finalQuestion() {
 
-    showScreen("finalScreen");
+    showScreen("final");
+
 }
 
 
-/* ---------- YES BUTTON ---------- */
-
 function yesClicked() {
 
-    document.getElementById("finalMessage").classList.remove("hidden");
+    document
+        .getElementById("finalMessage")
+        .classList.remove("hidden");
 
     createHearts();
 
     createFireworks();
+
 }
 
 
-/* ---------- SECRET BUTTON ---------- */
+/* ================= SECRET ================= */
 
-function secretMessage() {
+function openSecret() {
 
-    document.getElementById("secretModal").classList.add("show");
+    document
+        .getElementById("secretModal")
+        .classList.add("show");
+
 }
 
 
 function closeSecret() {
 
-    document.getElementById("secretModal").classList.remove("show");
+    document
+        .getElementById("secretModal")
+        .classList.remove("show");
+
 }
 
 
-/* ---------- FLOATING HEARTS ---------- */
+/* ================= MUSIC ================= */
+
+let musicPlaying = false;
+
+
+function toggleMusic() {
+
+    const music = document.getElementById("music");
+
+    if (!musicPlaying) {
+
+        music.play()
+            .then(() => {
+
+                musicPlaying = true;
+
+                document.getElementById("musicBtn").innerText =
+                    "🔊 Music ON";
+
+            })
+            .catch(() => {
+
+                alert(
+                    "Add a file named music.mp3 to your GitHub repository first."
+                );
+
+            });
+
+    } else {
+
+        music.pause();
+
+        musicPlaying = false;
+
+        document.getElementById("musicBtn").innerText =
+            "🎵 Music";
+
+    }
+
+}
+
+
+/* ================= FLOATING HEARTS ================= */
 
 function createHearts() {
 
-    for (let i = 0; i < 25; i++) {
+    const emojis = [
+        "❤️",
+        "💕",
+        "💖",
+        "💗",
+        "💓",
+        "💞",
+        "💘"
+    ];
 
-        const heart = document.createElement("div");
+    for (let i = 0; i < 40; i++) {
 
-        heart.innerHTML = ["❤️", "💕", "💖", "💗", "💓"][Math.floor(Math.random() * 5)];
+        const heart =
+            document.createElement("div");
+
+        heart.innerText =
+            emojis[
+                Math.floor(
+                    Math.random() * emojis.length
+                )
+            ];
 
         heart.style.position = "fixed";
 
-        heart.style.left = Math.random() * 100 + "%";
+        heart.style.left =
+            Math.random() * 100 + "%";
 
         heart.style.bottom = "-50px";
 
-        heart.style.fontSize = (20 + Math.random() * 30) + "px";
+        heart.style.fontSize =
+            20 + Math.random() * 35 + "px";
 
         heart.style.zIndex = "200";
 
@@ -160,43 +356,60 @@ function createHearts() {
 
         document.body.appendChild(heart);
 
-        const duration = 3 + Math.random() * 4;
+
+        const duration =
+            3 + Math.random() * 4;
+
 
         heart.animate(
+
             [
                 {
-                    transform: "translateY(0) rotate(0deg)",
+                    transform:
+                        "translateY(0) rotate(0deg)",
+
                     opacity: 1
                 },
+
                 {
                     transform:
-                        `translateY(-${window.innerHeight + 100}px)
-                         rotate(${Math.random() * 360}deg)`,
+                        `translateY(-${window.innerHeight + 150}px)
+                         rotate(${Math.random() * 720}deg)`,
+
                     opacity: 0
                 }
             ],
+
             {
                 duration: duration * 1000,
+
                 easing: "ease-out"
             }
+
         );
 
+
         setTimeout(() => {
+
             heart.remove();
+
         }, duration * 1000);
+
     }
+
 }
 
 
-/* ---------- SIMPLE FIREWORKS ---------- */
+/* ================= FIREWORKS ================= */
 
 function createFireworks() {
 
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 60; i++) {
 
-        const particle = document.createElement("div");
+        const particle =
+            document.createElement("div");
 
-        particle.innerHTML = "✨";
+        particle.innerText = "✨";
 
         particle.style.position = "fixed";
 
@@ -204,7 +417,8 @@ function createFireworks() {
 
         particle.style.top = "45%";
 
-        particle.style.fontSize = "25px";
+        particle.style.fontSize =
+            15 + Math.random() * 25 + "px";
 
         particle.style.zIndex = "300";
 
@@ -212,36 +426,72 @@ function createFireworks() {
 
         document.body.appendChild(particle);
 
-        const angle = Math.random() * Math.PI * 2;
 
-        const distance = 100 + Math.random() * 300;
+        const angle =
+            Math.random() * Math.PI * 2;
 
-        const x = Math.cos(angle) * distance;
+        const distance =
+            100 + Math.random() * 400;
 
-        const y = Math.sin(angle) * distance;
+        const x =
+            Math.cos(angle) * distance;
+
+        const y =
+            Math.sin(angle) * distance;
+
 
         particle.animate(
+
             [
                 {
-                    transform: "translate(-50%, -50%) scale(0)",
+                    transform:
+                        "translate(-50%, -50%) scale(0)",
+
                     opacity: 1
                 },
+
                 {
                     transform:
-                        `translate(calc(-50% + ${x}px),
-                         calc(-50% + ${y}px)) scale(1.5)`,
+                        `translate(
+                            calc(-50% + ${x}px),
+                            calc(-50% + ${y}px)
+                        ) scale(1.5)`,
+
                     opacity: 0
                 }
             ],
+
             {
                 duration: 1500,
+
                 easing: "ease-out"
             }
+
         );
 
+
         setTimeout(() => {
+
             particle.remove();
+
         }, 1500);
+
     }
+
 }
+
+
+/* ================= CLOSE MODAL BY CLICKING OUTSIDE ================= */
+
+document
+    .getElementById("secretModal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+
+            closeSecret();
+
+        }
+
+    });
 ```
