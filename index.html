@@ -2,219 +2,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Secret Universe ❤️</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Secret Universe ❤️</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Background stars -->
-    <div class="stars"></div>
+<div id="stars"></div>
+<div id="hearts"></div>
 
-    <!-- START SCREEN -->
-    <section id="startScreen" class="screen active">
-        <div class="card">
-            <div class="moon">🌙</div>
+<!-- MUSIC -->
+<audio id="music" loop>
+    <!-- Optional: put your music file in the repository as music.mp3 -->
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-            <h1>Our Secret Universe</h1>
+<button id="musicBtn" onclick="toggleMusic()">🎵 Music</button>
 
-            <p>
-                I made a little universe...
-                <br>
-                but there's only one person who belongs in it. ❤️
-            </p>
 
-            <button onclick="enterUniverse()">
-                ✨ Enter Our Universe
-            </button>
+<!-- ================= START ================= -->
 
-            <button class="secret-btn" onclick="secretMessage()">
-                🔐 Do Not Open
-            </button>
-        </div>
-    </section>
+<section id="start" class="screen active">
 
+    <div class="glass">
 
-    <!-- LOVE QUESTION -->
-    <section id="loveScreen" class="screen">
-        <div class="card">
+        <div class="moon">🌙</div>
 
-            <div class="big-heart">❤️</div>
+        <p class="small-title">A little something I made for you...</p>
 
-            <h1>One Question...</h1>
+        <h1>Our Secret<br>Universe</h1>
 
-            <h2>Do you know how much I love you?</h2>
+        <p>
+            I created a tiny universe where every star,
+            every word and every heartbeat is about you. ❤️
+        </p>
 
-            <div class="buttons">
-                <button onclick="loveAnswer()">😏 Of course!</button>
-                <button onclick="tellMe()">🥺 Tell me...</button>
-            </div>
+        <button class="main-btn" onclick="enterUniverse()">
+            ✨ Enter Our Universe
+        </button>
 
-            <p id="loveAnswerText" class="message"></p>
-
-            <button id="continue1" class="hidden" onclick="showUniverse()">
-                🌌 Continue
-            </button>
-
-        </div>
-    </section>
-
-
-    <!-- MEMORY UNIVERSE -->
-    <section id="universeScreen" class="screen">
-
-        <div class="universe-card">
-
-            <h1>🌌 Our Universe</h1>
-
-            <p>Every star holds a little piece of our story.</p>
-
-            <div class="constellation">
-
-                <button class="star star1" onclick="showMemory(1)">⭐</button>
-
-                <button class="star star2" onclick="showMemory(2)">⭐</button>
-
-                <button class="star star3" onclick="showMemory(3)">⭐</button>
-
-                <button class="star star4" onclick="showMemory(4)">⭐</button>
-
-            </div>
-
-            <div id="memoryBox" class="memory-box">
-                <p>✨ Click a star...</p>
-            </div>
-
-            <button onclick="showLetter()">
-                💌 Continue to the Letter
-            </button>
-
-        </div>
-    </section>
-
-
-    <!-- LETTER -->
-    <section id="letterScreen" class="screen">
-
-        <div class="card">
-
-            <h1>💌 A Letter For You</h1>
-
-            <div id="envelope" class="envelope" onclick="openLetter()">
-                💌
-                <span>Tap to open</span>
-            </div>
-
-            <div id="letter" class="letter hidden">
-
-                <h2>To My Favorite Person ❤️</h2>
-
-                <p>
-                    If you're reading this, you've reached the end of
-                    my little universe.
-                </p>
-
-                <p>
-                    But honestly...
-                    I don't want our story to have an end.
-                </p>
-
-                <p>
-                    You are one of the most beautiful parts of my life,
-                    and every moment with you means more to me than
-                    I can explain.
-                </p>
-
-                <p>
-                    So I have one last question...
-                </p>
-
-                <button onclick="finalQuestion()">
-                    🌹 One Last Question
-                </button>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- FINAL QUESTION -->
-    <section id="finalScreen" class="screen">
-
-        <div class="card final-card">
-
-            <div class="big-heart">💖</div>
-
-            <h1>One Last Question...</h1>
-
-            <h2>Will you keep making memories with me?</h2>
-
-            <div class="buttons">
-
-                <button onclick="yesClicked()">
-                    YES ❤️
-                </button>
-
-                <button onclick="yesClicked()">
-                    YES, OBVIOUSLY 😭❤️
-                </button>
-
-            </div>
-
-            <div id="finalMessage" class="final-message hidden">
-                <h1>🎆 I KNEW IT! 🎆</h1>
-
-                <p>
-                    Then let's keep writing our story...
-                    one beautiful memory at a time. ❤️
-                </p>
-
-                <div class="heart-rain">
-                    ❤️ 💕 💖 💗 💓 💞
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SECRET MODAL -->
-    <div id="secretModal" class="modal">
-
-        <div class="modal-content">
-
-            <button class="close" onclick="closeSecret()">×</button>
-
-            <div class="big-heart">🤫❤️</div>
-
-            <h2>You found my secret...</h2>
-
-            <p>
-                There is something I've been too shy to say directly.
-            </p>
-
-            <p class="secret-text">
-                I don't just love having you in my life...
-                <br><br>
-                I want to keep making memories with you.
-                ❤️
-            </p>
-
-            <button onclick="closeSecret()">
-                ❤️ Keep it Secret
-            </button>
-
-        </div>
+        <button class="secret-link" onclick="openSecret()">
+            🔐 Do Not Open
+        </button>
 
     </div>
 
+</section>
 
-    <script src="script.js"></script>
 
-</body>
-</html>
+<!-- ================= LOVE QUESTION ================= -->
+
+<section id="question" class="screen">
+
+    <div class="glass">
+
+        <div class="heart">❤️</div>
+
+        <p class="small-title">Before we continue...</p>
+
+        <h1>One Question</h1>
+
+        <h2>Do you know how much I love you?</h2>
+
+        <div class="two-buttons">
+
+            <button onclick="ofCourse()">
+                😏 Of course!
+            </button>
+
+            <button onclick="tellMe()">
+                🥺 Tell me...
+            </button>
+
+        </div>
+
+        <div id="answer"></div>
+
+        <button id="questionContinue"
+                class="main-btn hidden"
+                onclick="showUniverse()">
+            🌌 Continue
+        </button>
+
+    </div>
 ```
