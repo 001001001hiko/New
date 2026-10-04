@@ -4,87 +4,1185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Our Secret Universe ❤️</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:white;
+    background:
+        radial-gradient(circle at 20% 20%,#40105c,transparent 35%),
+        radial-gradient(circle at 80% 80%,#5c103d,transparent 35%),
+        #05000d;
+    overflow-x:hidden;
+}
+
+/* STARS */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+
+    background-image:
+        radial-gradient(white 1px,transparent 1px),
+        radial-gradient(#fff 1px,transparent 1px);
+
+    background-size:90px 90px,150px 150px;
+    background-position:0 0,40px 60px;
+
+    animation:moveStars 20s linear infinite;
+}
+
+@keyframes moveStars{
+    to{
+        background-position:-150px -150px;
+    }
+}
+
+/* SCREEN */
+
+.screen{
+    min-height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+}
+
+.screen.active{
+    display:flex;
+    animation:fade .6s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* CARD */
+
+.card{
+    width:100%;
+    max-width:750px;
+    padding:45px 30px;
+    text-align:center;
+
+    background:rgba(20,5,35,.88);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    box-shadow:0 0 70px rgba(255,20,147,.18);
+
+    backdrop-filter:blur(15px);
+}
+
+h1{
+    font-size:45px;
+    margin:20px 0;
+}
+
+h2{
+    margin:20px 0;
+}
+
+p{
+    font-size:18px;
+    line-height:1.7;
+    color:#eee;
+}
+
+.small{
+    color:#ff8dcc;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:13px;
+}
+
+/* BUTTON */
+
+button{
+    border:none;
+    padding:15px 25px;
+    margin:10px;
+    border-radius:30px;
+
+    color:white;
+    font-size:16px;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#ff1493,#8a2be2);
+
+    transition:.25s;
+}
+
+button:hover{
+    transform:scale(1.07);
+    box-shadow:0 0 30px rgba(255,20,147,.5);
+}
+
+.secret{
+    display:block;
+    margin:25px auto;
+    background:transparent;
+    border:1px solid #555;
+    color:#aaa;
+    box-shadow:none;
+}
+
+/* HEART */
+
+.heart{
+    font-size:85px;
+    animation:beat 1.2s infinite;
+}
+
+@keyframes beat{
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+/* MOON */
+
+.moon{
+    font-size:100px;
+    animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+/* BUTTON GROUP */
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+/* ANSWER */
+
+.answer{
+    min-height:70px;
+    margin:20px;
+    color:#ff91cf;
+    font-size:20px;
+}
+
+/* STARS */
+
+.universe{
+    position:relative;
+    height:400px;
+    max-width:650px;
+    margin:30px auto;
+
+    background:radial-gradient(
+        circle,
+        rgba(150,50,255,.15),
+        transparent 65%
+    );
+}
+
+.star{
+    position:absolute;
+
+    background:transparent;
+
+    font-size:38px;
+
+    padding:5px;
+
+    box-shadow:none;
+
+    margin:0;
+
+    animation:glow 1.5s infinite alternate;
+}
+
+.star:hover{
+    background:transparent;
+    box-shadow:none;
+    transform:scale(1.5);
+}
+
+.star1{
+    top:10%;
+    left:10%;
+}
+
+.star2{
+    top:25%;
+    right:15%;
+}
+
+.star3{
+    top:50%;
+    left:45%;
+}
+
+.star4{
+    bottom:15%;
+    left:20%;
+}
+
+.star5{
+    bottom:5%;
+    right:10%;
+}
+
+@keyframes glow{
+    from{
+        filter:drop-shadow(0 0 3px white);
+    }
+    to{
+        filter:drop-shadow(0 0 18px #ff69b4);
+    }
+}
+
+/* MEMORY */
+
+.memory{
+    min-height:130px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.06);
+
+    margin:20px 0;
+}
+
+/* COUNTDOWN */
+
+.timer{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:30px 0;
+    flex-wrap:wrap;
+}
+
+.time{
+    min-width:90px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.07);
+}
+
+.time span{
+    display:block;
+    font-size:30px;
+    color:#ff91cf;
+    font-weight:bold;
+}
+
+.time small{
+    color:#aaa;
+}
+
+/* ENVELOPE */
+
+.envelope{
+    width:210px;
+    height:150px;
+
+    margin:35px auto;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:20px;
+
+    background:linear-gradient(135deg,#ff4fa3,#7d2ae8);
+
+    font-size:65px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.envelope:hover{
+    transform:scale(1.08) rotate(-2deg);
+}
+
+.envelope span{
+    font-size:13px;
+}
+
+/* LETTER */
+
+.letter{
+    text-align:left;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.06);
+}
+
+.letter h2{
+    text-align:center;
+}
+
+.letter p{
+    margin-bottom:15px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.85);
+
+    z-index:100;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-card{
+    position:relative;
+
+    width:100%;
+    max-width:500px;
+
+    padding:40px 25px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:#19062d;
+
+    box-shadow:0 0 70px rgba(255,20,147,.4);
+}
+
+.close{
+    position:absolute;
+    top:5px;
+    right:5px;
+
+    background:transparent;
+
+    font-size:30px;
+
+    box-shadow:none;
+}
+
+/* HIDDEN */
+
+.hidden{
+    display:none!important;
+}
+
+/* FINAL */
+
+.final-message{
+    margin-top:30px;
+    padding:25px;
+
+    border-radius:20px;
+
+    background:rgba(255,20,147,.1);
+}
+
+.big-hearts{
+    font-size:40px;
+    margin:20px;
+    animation:float 2s infinite;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    h1{
+        font-size:34px;
+    }
+
+    h2{
+        font-size:21px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    .card{
+        padding:35px 18px;
+    }
+
+    .universe{
+        height:300px;
+    }
+
+    .time{
+        min-width:65px;
+    }
+
+    .time span{
+        font-size:23px;
+    }
+}
+
+</style>
 </head>
 
+
 <body>
-
-<div id="stars"></div>
-<div id="hearts"></div>
-
-<!-- MUSIC -->
-<audio id="music" loop>
-    <!-- Optional: put your music file in the repository as music.mp3 -->
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<button id="musicBtn" onclick="toggleMusic()">🎵 Music</button>
 
 
 <!-- ================= START ================= -->
 
 <section id="start" class="screen active">
 
-    <div class="glass">
+<div class="card">
 
-        <div class="moon">🌙</div>
+    <div class="moon">🌙</div>
 
-        <p class="small-title">A little something I made for you...</p>
+    <p class="small">A little something I made for you...</p>
 
-        <h1>Our Secret<br>Universe</h1>
+    <h1>Our Secret<br>Universe ❤️</h1>
 
-        <p>
-            I created a tiny universe where every star,
-            every word and every heartbeat is about you. ❤️
-        </p>
+    <p>
+        I made a little universe...
+        <br>
+        but there's only one person who belongs in it.
+    </p>
 
-        <button class="main-btn" onclick="enterUniverse()">
-            ✨ Enter Our Universe
-        </button>
+    <br>
 
-        <button class="secret-link" onclick="openSecret()">
-            🔐 Do Not Open
-        </button>
+    <button onclick="go('question')">
+        ✨ Enter Our Universe
+    </button>
 
-    </div>
+    <button class="secret" onclick="openSecret()">
+        🔐 Do Not Open
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- ================= LOVE QUESTION ================= -->
+<!-- ================= QUESTION ================= -->
 
 <section id="question" class="screen">
 
-    <div class="glass">
+<div class="card">
 
-        <div class="heart">❤️</div>
+    <div class="heart">❤️</div>
 
-        <p class="small-title">Before we continue...</p>
+    <p class="small">Before we continue...</p>
 
-        <h1>One Question</h1>
+    <h1>One Question</h1>
 
-        <h2>Do you know how much I love you?</h2>
+    <h2>
+        Do you know how much I love you?
+    </h2>
 
-        <div class="two-buttons">
+    <div class="buttons">
 
-            <button onclick="ofCourse()">
-                😏 Of course!
-            </button>
+        <button onclick="answer1()">
+            😏 Of course!
+        </button>
 
-            <button onclick="tellMe()">
-                🥺 Tell me...
-            </button>
-
-        </div>
-
-        <div id="answer"></div>
-
-        <button id="questionContinue"
-                class="main-btn hidden"
-                onclick="showUniverse()">
-            🌌 Continue
+        <button onclick="answer2()">
+            🥺 Tell me...
         </button>
 
     </div>
+
+    <div id="answer" class="answer"></div>
+
+    <button id="continueButton"
+            class="hidden"
+            onclick="go('universe')">
+
+        🌌 Continue
+
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ================= UNIVERSE ================= -->
+
+<section id="universe" class="screen">
+
+<div class="card">
+
+    <p class="small">Welcome to</p>
+
+    <h1>🌌 Our Universe</h1>
+
+    <p>
+        Every star contains a little piece of our story.
+    </p>
+
+    <div class="universe">
+
+        <button class="star star1"
+                onclick="memory(1)">⭐</button>
+
+        <button class="star star2"
+                onclick="memory(2)">⭐</button>
+
+        <button class="star star3"
+                onclick="memory(3)">⭐</button>
+
+        <button class="star star4"
+                onclick="memory(4)">⭐</button>
+
+        <button class="star star5"
+                onclick="memory(5)">⭐</button>
+
+    </div>
+
+    <div id="memoryBox" class="memory">
+
+        <h2>✨ Choose a star</h2>
+
+        <p>
+            Click one of the stars.
+        </p>
+
+    </div>
+
+    <button onclick="go('countdown')">
+        ⏳ One More Surprise
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ================= COUNTDOWN ================= -->
+
+<section id="countdown" class="screen">
+
+<div class="card">
+
+    <div class="heart">💖</div>
+
+    <h1>Our Next Memory</h1>
+
+    <p>
+        Some of the best moments haven't happened yet.
+    </p>
+
+    <div class="timer">
+
+        <div class="time">
+            <span id="days">00</span>
+            <small>Days</small>
+        </div>
+
+        <div class="time">
+            <span id="hours">00</span>
+            <small>Hours</small>
+        </div>
+
+        <div class="time">
+            <span id="minutes">00</span>
+            <small>Minutes</small>
+        </div>
+
+        <div class="time">
+            <span id="seconds">00</span>
+            <small>Seconds</small>
+        </div>
+
+    </div>
+
+    <p>
+        Until our next beautiful memory... ❤️
+    </p>
+
+    <button onclick="go('letter')">
+        💌 I Have Something For You
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ================= LETTER ================= -->
+
+<section id="letter" class="screen">
+
+<div class="card">
+
+    <h1>💌 A Letter For You</h1>
+
+    <p>
+        There is something waiting inside this envelope.
+    </p>
+
+    <div id="envelope"
+         class="envelope"
+         onclick="openLetter()">
+
+        💌
+
+        <span>
+            Tap to open
+        </span>
+
+    </div>
+
+
+    <div id="letterContent"
+         class="letter hidden">
+
+        <h2>
+            To My Favorite Person ❤️
+        </h2>
+
+        <p>
+            If you're reading this,
+            you've reached the end of my little universe.
+        </p>
+
+        <p>
+            But honestly...
+            I don't want our story to have an end.
+        </p>
+
+        <p>
+            You became someone incredibly special to me.
+            Every laugh, every conversation,
+            and every little moment means more
+            to me than you probably know.
+        </p>
+
+        <p>
+            I want to keep creating beautiful memories
+            with you.
+        </p>
+
+        <p>
+            And now...
+        </p>
+
+        <button onclick="go('final')">
+            🌹 One Last Question
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FINAL ================= -->
+
+<section id="final" class="screen">
+
+<div class="card">
+
+    <div class="heart">💖</div>
+
+    <p class="small">
+        This is the last page...
+    </p>
+
+    <h1>One Last Question</h1>
+
+    <h2>
+        Will you keep making memories with me?
+    </h2>
+
+    <div class="buttons">
+
+        <button onclick="yes()">
+            YES ❤️
+        </button>
+
+        <button onclick="yes()">
+            YES, OBVIOUSLY 😭❤️
+        </button>
+
+    </div>
+
+
+    <div id="finalMessage"
+         class="final-message hidden">
+
+        <h1>
+            🎆 I KNEW IT! 🎆
+        </h1>
+
+        <p>
+            Then let's keep writing our story...
+            one beautiful memory at a time.
+        </p>
+
+        <div class="big-hearts">
+            ❤️ 💕 💖 💗 💓 💞
+        </div>
+
+        <h2>
+            I love you. ❤️
+        </h2>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SECRET MODAL ================= -->
+
+<div id="secretModal" class="modal">
+
+<div class="modal-card">
+
+    <button class="close"
+            onclick="closeSecret()">
+        ×
+    </button>
+
+    <div class="heart">
+        🤫❤️
+    </div>
+
+    <h1>
+        You found it...
+    </h1>
+
+    <p>
+        I told you not to open this. 😭
+    </p>
+
+    <br>
+
+    <p>
+        But since you're here...
+    </p>
+
+    <h2>
+        Here's the truth:
+    </h2>
+
+    <p>
+        I don't just want you in my memories...
+        <br><br>
+        I want you in my future memories too.
+        ❤️
+    </p>
+
+    <button onclick="closeSecret()">
+        ❤️ Keep My Secret
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ======================================
+   MAIN SCREEN FUNCTION
+====================================== */
+
+function go(screen){
+
+    document.querySelectorAll(".screen")
+        .forEach(function(s){
+
+            s.classList.remove("active");
+
+        });
+
+    document.getElementById(screen)
+        .classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* ======================================
+   LOVE ANSWERS
+====================================== */
+
+function answer1(){
+
+    document.getElementById("answer").innerHTML =
+        "Then you already know... ❤️<br><br>" +
+        "But I'll still say it:<br>" +
+        "<b>I LOVE YOU MORE THAN WORDS CAN EXPLAIN.</b>";
+
+    document.getElementById("continueButton")
+        .classList.remove("hidden");
+}
+
+
+function answer2(){
+
+    document.getElementById("answer").innerHTML =
+        "More than yesterday...<br>" +
+        "Less than tomorrow. ❤️";
+
+    document.getElementById("continueButton")
+        .classList.remove("hidden");
+}
+
+
+/* ======================================
+   MEMORIES
+====================================== */
+
+function memory(number){
+
+    const box =
+        document.getElementById("memoryBox");
+
+    const memories = {
+
+        1:
+        "<h2>⭐ The Beginning</h2>" +
+        "<p>The first time I saw you, " +
+        "I had no idea you would become " +
+        "such an important part of my life. ❤️</p>",
+
+        2:
+        "<h2>😂 Our Laughs</h2>" +
+        "<p>One of my favorite things about us " +
+        "is how even the smallest moments " +
+        "can become unforgettable memories.</p>",
+
+        3:
+        "<h2>💖 The Moment</h2>" +
+        "<p>Somewhere along the way, " +
+        "you stopped being just someone I liked " +
+        "and became someone I truly cared about.</p>",
+
+        4:
+        "<h2>🌹 My Favorite</h2>" +
+        "<p>If I had to choose my favorite memory, " +
+        "I probably couldn't. " +
+        "Every moment with you becomes my favorite.</p>",
+
+        5:
+        "<h2>🌌 The Future</h2>" +
+        "<p>This universe isn't finished. " +
+        "I want us to fill it with hundreds " +
+        "of new memories together. ❤️</p>"
+    };
+
+    box.innerHTML = memories[number];
+}
+
+
+/* ======================================
+   COUNTDOWN
+====================================== */
+
+/*
+   CHANGE THIS DATE.
+
+   Example:
+   2027-01-01
+*/
+
+const target =
+    new Date("2027-01-01T00:00:00").getTime();
+
+
+function countdown(){
+
+    const now =
+        new Date().getTime();
+
+    let distance =
+        target - now;
+
+    if(distance < 0){
+        distance = 0;
+    }
+
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+
+    const hours =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+    const minutes =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+    const seconds =
+        Math.floor(
+            (distance %
+            (1000 * 60)) /
+            1000
+        );
+
+
+    document.getElementById("days")
+        .innerText =
+        String(days).padStart(2,"0");
+
+    document.getElementById("hours")
+        .innerText =
+        String(hours).padStart(2,"0");
+
+    document.getElementById("minutes")
+        .innerText =
+        String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds")
+        .innerText =
+        String(seconds).padStart(2,"0");
+}
+
+
+countdown();
+
+setInterval(countdown,1000);
+
+
+/* ======================================
+   LETTER
+====================================== */
+
+function openLetter(){
+
+    document.getElementById("envelope")
+        .classList.add("hidden");
+
+    document.getElementById("letterContent")
+        .classList.remove("hidden");
+}
+
+
+/* ======================================
+   SECRET
+====================================== */
+
+function openSecret(){
+
+    document.getElementById("secretModal")
+        .classList.add("show");
+}
+
+
+function closeSecret(){
+
+    document.getElementById("secretModal")
+        .classList.remove("show");
+}
+
+
+/* ======================================
+   FINAL YES
+====================================== */
+
+function yes(){
+
+    document.getElementById("finalMessage")
+        .classList.remove("hidden");
+
+    fireworks();
+
+    hearts();
+}
+
+
+/* ======================================
+   HEARTS
+====================================== */
+
+function hearts(){
+
+    const list =
+        ["❤️","💕","💖","💗","💓","💞"];
+
+    for(let i=0;i<35;i++){
+
+        const h =
+            document.createElement("div");
+
+        h.innerText =
+            list[
+                Math.floor(
+                    Math.random()*list.length
+                )
+            ];
+
+        h.style.position="fixed";
+
+        h.style.left =
+            Math.random()*100+"%";
+
+        h.style.bottom="-50px";
+
+        h.style.fontSize =
+            20+Math.random()*30+"px";
+
+        h.style.zIndex="200";
+
+        document.body.appendChild(h);
+
+        const duration =
+            3+Math.random()*4;
+
+        h.animate(
+
+            [
+                {
+                    transform:"translateY(0)",
+                    opacity:1
+                },
+                {
+                    transform:
+                        "translateY(-110vh)",
+                    opacity:0
+                }
+            ],
+
+            {
+                duration:duration*1000
+            }
+        );
+
+        setTimeout(
+            ()=>h.remove(),
+            duration*1000
+        );
+    }
+}
+
+
+/* ======================================
+   FIREWORKS
+====================================== */
+
+function fireworks(){
+
+    for(let i=0;i<60;i++){
+
+        const f =
+            document.createElement("div");
+
+        f.innerText="✨";
+
+        f.style.position="fixed";
+
+        f.style.left="50%";
+
+        f.style.top="45%";
+
+        f.style.fontSize =
+            15+Math.random()*25+"px";
+
+        f.style.zIndex="300";
+
+        document.body.appendChild(f);
+
+        const angle =
+            Math.random()*Math.PI*2;
+
+        const distance =
+            100+Math.random()*400;
+
+        const x =
+            Math.cos(angle)*distance;
+
+        const y =
+            Math.sin(angle)*distance;
+
+        f.animate(
+
+            [
+                {
+                    transform:
+                        "translate(-50%,-50%)",
+                    opacity:1
+                },
+                {
+                    transform:
+                        "translate("+
+                        x+"px,"+
+                        y+"px)",
+                    opacity:0
+                }
+            ],
+
+            {
+                duration:1500
+            }
+        );
+
+        setTimeout(
+            ()=>f.remove(),
+            1500
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>
 ```
