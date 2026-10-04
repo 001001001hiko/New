@@ -5,47 +5,60 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #050014;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 20%, #2a0845, transparent 35%),
+        radial-gradient(circle at 80% 80%, #45002c, transparent 35%),
+        #05000d;
+
     color: white;
+    font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 
-/* ---------- STARS ---------- */
 
-.stars {
+/* ================= STARS ================= */
+
+#stars {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: -2;
 
-    background:
-        radial-gradient(circle at 20% 30%, white 1px, transparent 2px),
-        radial-gradient(circle at 70% 20%, white 1px, transparent 2px),
-        radial-gradient(circle at 40% 80%, white 1px, transparent 2px),
-        radial-gradient(circle at 90% 70%, white 1px, transparent 2px),
-        radial-gradient(circle at 10% 90%, white 1px, transparent 2px),
-        #050014;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#fff 1px, transparent 1px);
 
-    background-size: 180px 180px;
-    animation: starsMove 15s linear infinite;
+    background-size: 100px 100px, 170px 170px;
+
+    background-position:
+        0 0,
+        40px 60px;
+
+    animation: starMove 20s linear infinite;
 }
 
-@keyframes starsMove {
+@keyframes starMove {
+
     from {
-        background-position: 0 0;
+        transform: translate(0, 0);
     }
 
     to {
-        background-position: 180px 180px;
+        transform: translate(-100px, -100px);
     }
 }
 
 
-/* ---------- SCREENS ---------- */
+/* ================= SCREENS ================= */
 
 .screen {
     min-height: 100vh;
+
     display: none;
 
     justify-content: center;
@@ -56,120 +69,188 @@ body {
 
 .screen.active {
     display: flex;
+
+    animation: appear 0.8s ease;
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 
-/* ---------- CARD ---------- */
+/* ================= GLASS ================= */
 
-.card,
-.universe-card {
+.glass {
+
     width: 100%;
-    max-width: 650px;
+    max-width: 700px;
 
-    padding: 45px 30px;
+    padding: 50px 35px;
 
     text-align: center;
 
-    background: rgba(20, 5, 45, 0.88);
+    background: rgba(20, 5, 35, 0.82);
 
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.15);
 
-    border-radius: 30px;
+    border-radius: 35px;
+
+    backdrop-filter: blur(15px);
 
     box-shadow:
-        0 0 50px rgba(255, 0, 130, 0.15),
-        inset 0 0 30px rgba(255, 255, 255, 0.03);
+        0 0 80px rgba(255, 0, 150, 0.15);
 
-    backdrop-filter: blur(10px);
+}
+
+.universe {
+    max-width: 850px;
 }
 
 
-/* ---------- TEXT ---------- */
+/* ================= TEXT ================= */
 
 h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
+    font-size: 48px;
+
+    margin: 15px 0 25px;
 }
 
 h2 {
-    margin: 20px 0;
     line-height: 1.5;
+
+    margin: 15px 0;
 }
 
 p {
     font-size: 18px;
-    line-height: 1.7;
-    color: #eee;
+
+    line-height: 1.8;
+
+    color: #eeeeee;
+}
+
+.small-title {
+    color: #ff8dcc;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    font-size: 13px;
+}
+
+.pink {
+    color: #ff91cf;
 }
 
 
-/* ---------- BUTTONS ---------- */
+/* ================= BUTTONS ================= */
 
 button {
+
     border: none;
 
-    padding: 14px 25px;
+    color: white;
 
-    margin: 10px;
+    background:
+        linear-gradient(135deg,
+        #ff1493,
+        #8a2be2);
+
+    padding: 15px 25px;
 
     border-radius: 30px;
+
+    margin: 10px;
 
     font-size: 16px;
 
     cursor: pointer;
 
-    color: white;
-
-    background: linear-gradient(135deg, #ff1493, #8a2be2);
-
     transition: 0.3s;
 
-    box-shadow: 0 0 20px rgba(255, 20, 147, 0.25);
+    box-shadow:
+        0 0 25px rgba(255,20,147,0.25);
 }
 
 button:hover {
-    transform: scale(1.08);
+
+    transform: translateY(-3px) scale(1.05);
 
     box-shadow:
-        0 0 30px rgba(255, 20, 147, 0.6);
+        0 0 35px rgba(255,20,147,0.55);
+}
+
+.main-btn {
+    margin-top: 25px;
+}
+
+.two-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+}
+
+.secret-link {
+
+    display: block;
+
+    margin: 25px auto 0;
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    color: #999;
+
+    font-size: 13px;
+
+    box-shadow: none;
 }
 
 
-/* ---------- BIG HEART ---------- */
+/* ================= MUSIC ================= */
 
-.big-heart {
-    font-size: 80px;
+#musicBtn {
 
-    animation: heartbeat 1.4s infinite;
-}
+    position: fixed;
 
-@keyframes heartbeat {
+    top: 20px;
 
-    0%,
-    100% {
-        transform: scale(1);
-    }
+    right: 20px;
 
-    50% {
-        transform: scale(1.15);
-    }
+    z-index: 50;
+
+    font-size: 13px;
+
+    padding: 10px 15px;
 }
 
 
-/* ---------- MOON ---------- */
+/* ================= MOON ================= */
 
 .moon {
-    font-size: 90px;
 
-    margin-bottom: 10px;
+    font-size: 100px;
 
-    animation: float 3s ease-in-out infinite;
+    animation: floating 3s ease-in-out infinite;
 }
 
-@keyframes float {
+@keyframes floating {
 
-    0%,
-    100% {
+    0%,100% {
         transform: translateY(0);
     }
 
@@ -179,144 +260,161 @@ button:hover {
 }
 
 
-/* ---------- SECRET BUTTON ---------- */
+/* ================= HEART ================= */
 
-.secret-btn {
-    display: block;
+.heart {
 
-    margin: 30px auto 0;
+    font-size: 80px;
 
-    background: transparent;
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-
-    color: #aaa;
-
-    font-size: 13px;
+    animation: beat 1.3s infinite;
 }
 
-.secret-btn:hover {
-    color: white;
+.huge-heart {
+
+    font-size: 100px;
+
+    animation: beat 1.2s infinite;
 }
 
+@keyframes beat {
 
-/* ---------- MESSAGE ---------- */
+    0%,100% {
+        transform: scale(1);
+    }
 
-.message {
-    margin: 20px;
-
-    color: #ff9bd7;
-
-    font-size: 20px;
+    50% {
+        transform: scale(1.15);
+    }
 }
 
 
-/* ---------- UNIVERSE ---------- */
-
-.universe-card {
-    max-width: 800px;
-}
+/* ================= CONSTELLATION ================= */
 
 .constellation {
+
     position: relative;
 
-    height: 350px;
+    height: 400px;
+
+    max-width: 650px;
 
     margin: 30px auto;
 
-    max-width: 600px;
-
     background:
         radial-gradient(circle,
-        rgba(120, 40, 200, 0.2),
+        rgba(150,40,255,0.15),
         transparent 65%);
 }
 
 .star {
-    position: absolute;
 
-    font-size: 35px;
+    position: absolute;
 
     padding: 5px;
 
+    margin: 0;
+
     background: transparent;
+
+    font-size: 38px;
 
     box-shadow: none;
 
-    animation: starGlow 2s infinite alternate;
+    z-index: 3;
+
+    animation: glow 1.8s infinite alternate;
 }
 
 .star:hover {
-    transform: scale(1.5);
 
     background: transparent;
 
     box-shadow: none;
+
+    transform: scale(1.5);
 }
 
-.star1 {
-    top: 15%;
-    left: 15%;
+.s1 {
+    top: 10%;
+    left: 12%;
 }
 
-.star2 {
-    top: 30%;
-    right: 20%;
+.s2 {
+    top: 20%;
+    right: 15%;
 }
 
-.star3 {
-    bottom: 20%;
-    left: 35%;
+.s3 {
+    top: 50%;
+    left: 45%;
 }
 
-.star4 {
-    bottom: 10%;
-    right: 10%;
+.s4 {
+    bottom: 15%;
+    left: 20%;
 }
 
-@keyframes starGlow {
+.s5 {
+    bottom: 5%;
+    right: 12%;
+}
+
+@keyframes glow {
+
     from {
         filter: drop-shadow(0 0 3px white);
     }
 
     to {
-        filter: drop-shadow(0 0 15px #ff69b4);
+        filter: drop-shadow(0 0 18px #ff69b4);
     }
 }
 
+.line {
 
-/* ---------- MEMORY BOX ---------- */
+    position: absolute;
 
-.memory-box {
-    min-height: 100px;
+    height: 1px;
 
-    padding: 25px;
+    background: rgba(255,255,255,0.2);
 
-    margin: 20px auto;
+    transform-origin: left;
+}
 
-    border-radius: 20px;
+.l1 {
+    width: 250px;
+    top: 18%;
+    left: 17%;
+    transform: rotate(8deg);
+}
 
-    background: rgba(255, 255, 255, 0.06);
+.l2 {
+    width: 300px;
+    top: 38%;
+    left: 20%;
+    transform: rotate(30deg);
+}
 
-    display: flex;
+.l3 {
+    width: 220px;
+    top: 65%;
+    left: 32%;
+    transform: rotate(-25deg);
+}
 
-    justify-content: center;
-
-    align-items: center;
+.l4 {
+    width: 250px;
+    top: 58%;
+    left: 48%;
+    transform: rotate(-20deg);
 }
 
 
-/* ---------- ENVELOPE ---------- */
+/* ================= MEMORY ================= */
 
-.envelope {
-    margin: 30px auto;
+.memory {
 
-    width: 180px;
-    height: 130px;
-
-    border-radius: 15px;
-
-    background: linear-gradient(135deg, #ff4fa3, #8a2be2);
+    min-height: 130px;
 
     display: flex;
 
@@ -326,152 +424,223 @@ button:hover {
 
     align-items: center;
 
-    font-size: 55px;
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.06);
+
+    margin-bottom: 20px;
+}
+
+
+/* ================= COUNTDOWN ================= */
+
+.timer {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin: 35px 0;
+}
+
+.timer div {
+
+    min-width: 85px;
+
+    padding: 18px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.07);
+}
+
+.timer span {
+
+    display: block;
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    color: #ff8dcc;
+}
+
+.timer small {
+
+    color: #aaa;
+}
+
+
+/* ================= ENVELOPE ================= */
+
+.envelope {
+
+    width: 210px;
+
+    height: 150px;
+
+    margin: 35px auto;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 65px;
 
     cursor: pointer;
+
+    background:
+        linear-gradient(135deg,
+        #ff4fa3,
+        #7d2ae8);
 
     transition: 0.4s;
 }
 
 .envelope:hover {
-    transform: scale(1.08) rotate(-2deg);
 
-    box-shadow: 0 0 40px rgba(255, 20, 147, 0.5);
+    transform:
+        scale(1.08)
+        rotate(-2deg);
+
+    box-shadow:
+        0 0 50px rgba(255,20,147,0.5);
 }
 
 .envelope span {
+
     font-size: 13px;
-    margin-top: 5px;
 }
 
 
-/* ---------- LETTER ---------- */
+/* ================= LETTER ================= */
 
-.letter {
-    background: rgba(255, 255, 255, 0.07);
-
-    padding: 25px;
-
-    border-radius: 20px;
+.letter-text {
 
     text-align: left;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.06);
 }
 
-.letter h2 {
+.letter-text h2 {
+
     text-align: center;
 }
 
-.letter p {
+.letter-text p {
+
     margin-bottom: 15px;
 }
 
 
-/* ---------- MODAL ---------- */
+/* ================= MODAL ================= */
 
 .modal {
+
+    display: none;
+
     position: fixed;
 
     inset: 0;
 
-    display: none;
+    z-index: 100;
+
+    background: rgba(0,0,0,0.85);
 
     justify-content: center;
 
     align-items: center;
 
     padding: 20px;
-
-    background: rgba(0, 0, 0, 0.8);
-
-    z-index: 100;
 }
 
 .modal.show {
+
     display: flex;
 }
 
-.modal-content {
+.secret-box {
+
     position: relative;
+
+    max-width: 550px;
 
     width: 100%;
 
-    max-width: 500px;
-
-    padding: 40px 25px;
+    padding: 45px 30px;
 
     text-align: center;
 
-    border-radius: 25px;
+    border-radius: 30px;
 
-    background: #18052d;
+    background: #19062d;
 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-
-    box-shadow: 0 0 60px rgba(255, 20, 147, 0.3);
+    box-shadow:
+        0 0 70px rgba(255,20,147,0.35);
 }
 
 .close {
+
     position: absolute;
 
     top: 10px;
+
     right: 10px;
 
     background: transparent;
 
-    box-shadow: none;
-
     font-size: 30px;
 
     padding: 5px 15px;
-}
 
-.secret-text {
-    color: #ff9bd7;
-
-    font-size: 20px;
-
-    margin: 20px 0;
+    box-shadow: none;
 }
 
 
-/* ---------- FINAL ---------- */
+/* ================= FINAL ================= */
 
-.final-card {
-    overflow: hidden;
-}
+.finalMessage {
 
-.final-message {
     margin-top: 30px;
-
-    padding: 25px;
-
-    border-radius: 20px;
-
-    background: rgba(255, 20, 147, 0.1);
 }
 
-.heart-rain {
-    font-size: 35px;
+.love-big {
 
-    margin-top: 20px;
+    font-size: 40px;
 
-    animation: float 2s infinite;
+    margin: 25px 0;
+
+    animation: floating 2s infinite;
 }
 
 
-/* ---------- UTILITIES ---------- */
+/* ================= UTILITY ================= */
 
 .hidden {
     display: none !important;
 }
 
 
-/* ---------- MOBILE ---------- */
+/* ================= MOBILE ================= */
 
 @media (max-width: 600px) {
 
     h1 {
-        font-size: 32px;
+        font-size: 34px;
     }
 
     h2 {
@@ -482,13 +651,29 @@ button:hover {
         font-size: 16px;
     }
 
-    .card,
-    .universe-card {
+    .glass {
         padding: 35px 18px;
     }
 
     .constellation {
-        height: 280px;
+        height: 300px;
+    }
+
+    .timer {
+        gap: 5px;
+    }
+
+    .timer div {
+        min-width: 65px;
+        padding: 12px 5px;
+    }
+
+    .timer span {
+        font-size: 24px;
+    }
+
+    .line {
+        display: none;
     }
 }
 ```
